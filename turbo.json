@@ -1,1 +1,31 @@
-{\n  \"$schema\": \"https://turbo.build/schema.json\",\n  \"tasks\": {\n    \"build\": {\n      \"dependsOn\": [\"^build\"],\n      \"outputs\": [\".next/**\", \"!.next/cache/**\"]\n    },\n    \"dev\": {\n      \"cache\": false,\n      \"persistent\": true\n    },\n    \"start\": {\n      \"dependsOn\": [\"build\"]\n    },\n    \"lint\": {\n      \"dependsOn\": [\"^lint\"]\n    },\n    \"lint:fix\": {\n      \"dependsOn\": [\"^lint:fix\"]\n    },\n    \"type-check\": {\n      \"dependsOn\": [\"^type-check\"]\n    },\n    \"clean\": {\n      \"cache\": false\n    },\n    \"test\": {\n      \"dependsOn\": [\"^build\"]\n    }\n  }\n}
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "start": {
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "lint:fix": {
+      "dependsOn": ["^lint:fix"]
+    },
+    "type-check": {
+      "dependsOn": ["^type-check"]
+    },
+    "clean": {
+      "cache": false
+    },
+    "test": {
+      "dependsOn": ["^build"]
+    }
+  }
+}
