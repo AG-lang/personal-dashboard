@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "frontend/next.config.js", "use": "@vercel/next" },
-    { "src": "api/**/*.py", "use": "@vercel/python@3.11" }
-  ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/index.py" },
-    { "src": "/(.*)", "dest": "/frontend/$1" }
-  ]
+  "framework": "nextjs",
+  "installCommand": "pnpm -w install",
+  "buildCommand": "pnpm --filter frontend build",
+  "outputDirectory": "frontend/.next",
+  "functions": {
+    "api/**/*.py": {
+      "runtime": "python3.11"
+    }
+  }
 }
