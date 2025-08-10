@@ -18,9 +18,13 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # 启动时创建数据库表
-    logger.info("正在创建数据库表...")
-    create_db_and_tables()
-    logger.info("数据库表创建完成")
+    try:
+        logger.info("正在创建数据库表...")
+        create_db_and_tables()
+        logger.info("数据库表创建完成")
+    except Exception as e:
+        logger.error(f"数据库表创建失败: {e}")
+        # 不阻止应用启动，让 API 至少能响应
     yield
 
 app = FastAPI(
@@ -66,11 +70,16 @@ app.include_router(commands.router, prefix="/commands", tags=["commands"])
 
 @app.get("/")
 async def root():
-    return {"message": "个人仪表盘 API 运行正常"}
+    return {"message": "个人仪表盘 API 运行正常", "timestamp": "2025-08-10"}
 
 @app.get("/health")
 async def health_check():
     return {"status": "healthy", "service": "personal-dashboard-api"}
+
+@app.get("/test")
+async def test_endpoint():
+    """简单的测试端点"""
+    return {"test": "API 工作正常", "method": "GET"}
 
 @app.get("/debug/routes")
 async def debug_routes():
