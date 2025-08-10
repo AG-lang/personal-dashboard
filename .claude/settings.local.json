@@ -13,7 +13,8 @@
       "Bash(pnpm build:*)",
       "Bash(alembic revision:*)",
       "Bash(pnpm create:*)",
-      "mcp__context7__get-library-docs"
+      "mcp__context7__get-library-docs",
+      "mcp__tavily-mcp__tavily-search"
     ],
     "deny": []
   },
