@@ -9,12 +9,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog'
-import type { CommandCreate, CommandUpdate, CommandCategory } from '@/lib/types'
+import type { CommandCreate, CommandUpdate, CommandCategory, Command } from '@/lib/types'
 
 interface CommandFormProps {
   onSubmit: (data: CommandCreate | CommandUpdate) => void
   onCancel?: () => void
-  initialData?: Partial<CommandCreate>
+  initialData?: Partial<CommandCreate> | Command | undefined
   isEditing?: boolean
   isLoading?: boolean
 }

@@ -22,9 +22,9 @@ export default function CommandsPage() {
   const deleteCommandMutation = useDeleteCommand()
   const useCommandMutation = useUseCommand()
 
-  const handleCreateCommand = async (data: CommandCreate) => {
+  const handleCreateCommand = async (data: CommandCreate | CommandUpdate) => {
     try {
-      await createCommandMutation.mutateAsync(data)
+      await createCommandMutation.mutateAsync(data as CommandCreate)
       toast.success('命令保存成功')
       setShowForm(false)
     } catch (error) {
@@ -33,13 +33,13 @@ export default function CommandsPage() {
     }
   }
 
-  const handleUpdateCommand = async (data: CommandUpdate) => {
+  const handleUpdateCommand = async (data: CommandCreate | CommandUpdate) => {
     if (!editingCommand) return
     
     try {
       await updateCommandMutation.mutateAsync({
         id: editingCommand.id,
-        command: data
+        command: data as CommandUpdate
       })
       toast.success('命令更新成功')
       setEditingCommand(null)

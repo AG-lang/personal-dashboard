@@ -45,14 +45,20 @@ export function CommandList({
   const [showFilters, setShowFilters] = useState(false)
 
   // 构建查询参数
-  const queryParams: CommandsQueryParams = useMemo(() => ({
-    search: searchQuery || undefined,
-    category: selectedCategory !== 'all' ? selectedCategory : undefined,
-    tags: selectedTag !== 'all' ? selectedTag : undefined,
-    is_dangerous: dangerousFilter === 'dangerous' ? true : dangerousFilter === 'safe' ? false : undefined,
-    sort_by: sortBy,
-    sort_desc: true,
-  }), [searchQuery, selectedCategory, selectedTag, dangerousFilter, sortBy])
+  const queryParams: CommandsQueryParams = useMemo(() => {
+    const params: CommandsQueryParams = {
+      sort_by: sortBy,
+      sort_desc: true,
+    }
+    
+    if (searchQuery) params.search = searchQuery
+    if (selectedCategory !== 'all') params.category = selectedCategory
+    if (selectedTag !== 'all') params.tags = selectedTag
+    if (dangerousFilter === 'dangerous') params.is_dangerous = true
+    else if (dangerousFilter === 'safe') params.is_dangerous = false
+    
+    return params
+  }, [searchQuery, selectedCategory, selectedTag, dangerousFilter, sortBy])
 
   const { data: commands, isLoading } = useCommands(queryParams)
   const { data: categories } = useCommandCategories()
@@ -135,7 +141,7 @@ export function CommandList({
             {/* 分类过滤 */}
             <div className="space-y-2">
               <label className="text-sm font-medium">分类</label>
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+              <Select value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as CommandCategory | 'all')}>
                 <SelectTrigger>
                   <SelectValue placeholder="所有分类" />
                 </SelectTrigger>
@@ -171,7 +177,7 @@ export function CommandList({
             {/* 危险性过滤 */}
             <div className="space-y-2">
               <label className="text-sm font-medium">安全性</label>
-              <Select value={dangerousFilter} onValueChange={setDangerousFilter}>
+              <Select value={dangerousFilter} onValueChange={(value) => setDangerousFilter(value as 'all' | 'safe' | 'dangerous')}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
@@ -186,7 +192,7 @@ export function CommandList({
             {/* 排序方式 */}
             <div className="space-y-2">
               <label className="text-sm font-medium">排序方式</label>
-              <Select value={sortBy} onValueChange={setSortBy}>
+              <Select value={sortBy} onValueChange={(value) => setSortBy(value as 'updated_at' | 'use_count' | 'name')}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>

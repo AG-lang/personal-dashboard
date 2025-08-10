@@ -81,12 +81,12 @@ export function CommandItem({ command, onEdit, onDelete, onUse }: CommandItemPro
               {command.is_dangerous && (
                 <AlertTriangle className="h-4 w-4 text-red-500" />
               )}
+              <span className="font-medium">{command.name}</span>
               <CopyButton
                 text={command.name}
-                className="font-medium hover:text-primary cursor-pointer"
-              >
-                {command.name}
-              </CopyButton>
+                className="ml-2"
+                size="icon"
+              />
             </CardTitle>
             
             <div className="flex items-center gap-2 mt-2">
@@ -168,9 +168,8 @@ export function CommandItem({ command, onEdit, onDelete, onUse }: CommandItemPro
               variant="ghost"
               size="sm"
               className="h-6 px-2 text-xs"
-            >
-              复制
-            </CopyButton>
+              showText={true}
+            />
           </div>
           <code className="block w-full p-3 bg-muted rounded-md text-sm font-mono overflow-x-auto">
             {command.command}
@@ -195,9 +194,8 @@ export function CommandItem({ command, onEdit, onDelete, onUse }: CommandItemPro
                 variant="ghost"
                 size="sm"
                 className="h-6 px-2 text-xs"
-              >
-                复制
-              </CopyButton>
+                showText={true}
+              />
             </div>
             <code className="block w-full p-3 bg-muted rounded-md text-sm font-mono overflow-x-auto">
               {command.usage_example}

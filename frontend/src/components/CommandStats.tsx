@@ -45,12 +45,14 @@ export function CommandStats({ onUseCommand }: CommandStatsProps) {
           {command.is_dangerous && (
             <AlertTriangle className="h-3 w-3 text-red-500 flex-shrink-0" />
           )}
+          <span className="font-medium text-sm hover:text-primary cursor-pointer truncate">
+            {command.name}
+          </span>
           <CopyButton
             text={command.name}
-            className="font-medium text-sm hover:text-primary cursor-pointer truncate"
-          >
-            {command.name}
-          </CopyButton>
+            size="icon"
+            className="h-4 w-4"
+          />
         </div>
         <code className="text-xs text-muted-foreground font-mono truncate block">
           {command.command}
@@ -202,12 +204,14 @@ export function CommandStats({ onUseCommand }: CommandStatsProps) {
                       {command.is_dangerous && (
                         <AlertTriangle className="h-3 w-3 text-red-500 flex-shrink-0" />
                       )}
+                      <span className="font-medium text-sm hover:text-primary cursor-pointer truncate">
+                        {command.name}
+                      </span>
                       <CopyButton
                         text={command.name}
-                        className="font-medium text-sm hover:text-primary cursor-pointer truncate"
-                      >
-                        {command.name}
-                      </CopyButton>
+                        size="icon"
+                        className="h-4 w-4"
+                      />
                     </div>
                     <code className="text-xs text-muted-foreground font-mono truncate block">
                       {command.command}
