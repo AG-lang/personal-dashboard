@@ -1,7 +1,7 @@
 {
   "version": 2,
   "installCommand": "pnpm install",
-  "buildCommand": "pnpm run build --filter=frontend",
+  "buildCommand": "turbo build --filter=frontend",
   "outputDirectory": "frontend/.next",
   "functions": {
     "api/main.py": {
