@@ -8,11 +8,12 @@ from app.models import (
     Flashcard, ReviewRecord, StudyStats
 )
 
-# 获取数据库 URL，优先使用云端 Serverless 推荐的非连接池地址
-# 依次优先级：POSTGRES_URL_NON_POOLING > POSTGRES_URL > 本地 SQLite
+# 获取数据库 URL，优先使用云端配置的数据库地址
+# 依次优先级：POSTGRES_URL > POSTGRES_URL_NON_POOLING > 本地 SQLite  
 DATABASE_URL = (
-    os.getenv("POSTGRES_URL_NON_POOLING")
-    or os.getenv("POSTGRES_URL", "sqlite:///./personal_dashboard.db")
+    os.getenv("POSTGRES_URL")
+    or os.getenv("POSTGRES_URL_NON_POOLING")
+    or "sqlite:///./personal_dashboard.db"
 )
 
 # 创建数据库引擎
