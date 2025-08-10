@@ -26,9 +26,12 @@ app = FastAPI(
 # 配置 CORS
 app.add_middleware(
     CORSMiddleware,
-    # Vercel 生产环境域名与本地开发
-    allow_origins=["http://localhost:3000"],
-    allow_origin_regex=r"https:\/\/[a-z0-9-]+\.vercel\.app",
+    # 支持本地开发和 Vercel 生产环境
+    allow_origins=[
+        "http://localhost:3000",  # 本地开发
+        "https://*.vercel.app",    # Vercel 域名
+    ],
+    allow_origin_regex=r"https:\/\/.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

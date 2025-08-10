@@ -1,48 +1,19 @@
 {
-  "builds": [
-    { 
-      "src": "frontend/next.config.js", 
-      "use": "@vercel/next",
-      "config": {
-        "outputDirectory": "frontend/.next"
-      }
-    },
-    { 
-      "src": "api/app/main.py", 
-      "use": "@vercel/python",
-      "config": {
-        "runtime": "python3.11",
-        "maxLambdaSize": "15mb"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "api/app/main.py",
-      "headers": {
-        "Cache-Control": "s-maxage=60, stale-while-revalidate=300"
-      }
-    },
-    { 
-      "src": "/(.*)", 
-      "dest": "frontend/$1",
-      "headers": {
-        "Cache-Control": "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800"
-      }
-    }
-  ],
+  "buildCommand": "cd frontend && pnpm install && pnpm build",
+  "outputDirectory": "frontend/.next",
+  "installCommand": "pnpm install",
+  "framework": "nextjs",
   "functions": {
     "api/app/main.py": {
-      "runtime": "python3.11",
-      "includeFiles": "api/**",
-      "memory": 512,
-      "maxDuration": 30
+      "runtime": "python3.11"
     }
   },
-  "env": {
-    "PYTHONPATH": "api"
-  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/app/main.py"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -58,21 +29,8 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
         }
       ]
-    }
-  ],
-  "trailingSlash": false,
-  "cleanUrls": true,
-  "redirects": [
-    {
-      "source": "/dashboard",
-      "destination": "/",
-      "permanent": true
     }
   ]
 }
