@@ -70,7 +70,10 @@ const nextConfig = {
   },
   
   async rewrites() {
-    const backend = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    if (!process.env.NEXT_PUBLIC_API_URL) {
+      return []
+    }
+    const backend = process.env.NEXT_PUBLIC_API_URL
     return [
       {
         source: '/api/:path*',
