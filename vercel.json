@@ -3,8 +3,14 @@
   "installCommand": "pnpm install --no-frozen-lockfile",
   "buildCommand": "pnpm run build",
   "functions": {
-    "api/**/*.py": {
+    "api/index.py": {
       "runtime": "python3.11"
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.py"
+    }
+  ]
 }
