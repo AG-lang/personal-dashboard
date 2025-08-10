@@ -4,24 +4,25 @@
   "private": true,
   "description": "现代个人仪表盘应用",
   "scripts": {
-    "dev": "pnpm --filter frontend dev",
+    "dev": "turbo dev",
     "dev:api": "cd api && uvicorn app.main:app --reload --port 8000",
     "dev:all": "concurrently \"pnpm dev\" \"pnpm dev:api\"",
-    "build": "pnpm --filter frontend build",
-    "start": "pnpm --filter frontend start",
-    "lint": "pnpm --filter frontend lint",
-    "lint:fix": "pnpm --filter frontend lint --fix",
-    "type-check": "pnpm --filter frontend type-check",
-    "clean": "pnpm --filter frontend clean && rimraf node_modules/.cache",
+    "build": "turbo build",
+    "start": "turbo start",
+    "lint": "turbo lint",
+    "lint:fix": "turbo lint:fix",
+    "type-check": "turbo type-check",
+    "clean": "turbo clean && rimraf node_modules/.cache",
     "analyze": "pnpm --filter frontend analyze",
-    "test": "pnpm --filter frontend test",
+    "test": "turbo test",
     "install:api": "cd api && uv pip install -r requirements.txt",
     "setup": "pnpm install && pnpm install:api"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
     "pnpm": "^8.15.1",
-    "rimraf": "^5.0.5"
+    "rimraf": "^5.0.5",
+    "turbo": "latest"
   },
   "workspaces": [
     "frontend"

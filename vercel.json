@@ -1,8 +1,7 @@
 {
   "version": 2,
-  "framework": "nextjs",
-  "installCommand": "pnpm -w install",
-  "buildCommand": "pnpm --filter frontend build",
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm run build",
   "outputDirectory": "frontend/.next",
   "functions": {
     "api/**/*.py": {
