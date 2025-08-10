@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "installCommand": "pnpm install",
+  "buildCommand": "cd frontend && pnpm run build",
+  "outputDirectory": "frontend/.next",
   "functions": {
     "api/main.py": {
       "runtime": "python3.11"
@@ -12,6 +15,10 @@
     },
     {
       "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
     }
   ]
 }
