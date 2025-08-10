@@ -15,6 +15,11 @@ from app.auth.utils import (
 router = APIRouter()
 security = HTTPBearer()
 
+@router.get("/test")
+async def test_auth_router():
+    """测试认证路由是否工作"""
+    return {"message": "认证路由工作正常", "router": "auth"}
+
 @router.post("/register", response_model=UserResponse, summary="用户注册")
 async def register(
     user_data: UserCreate,
