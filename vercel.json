@@ -1,8 +1,5 @@
 {
   "version": 2,
-  "installCommand": "pnpm install",
-  "buildCommand": "turbo build --filter=personal-dashboard-frontend",
-  "outputDirectory": "frontend/.next",
   "functions": {
     "api/main.py": {
       "runtime": "python3.11"
