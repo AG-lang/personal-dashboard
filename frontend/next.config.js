@@ -87,6 +87,7 @@ const nextConfig = {
   generateEtags: false,
   
   // 输出优化
+  output: 'standalone',
 }
 
 module.exports = nextConfig
