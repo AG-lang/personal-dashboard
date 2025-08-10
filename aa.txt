@@ -1,0 +1,83 @@
+对这个项目有什么不懂的，记得用本地mcp工具，例如context7 搜索文档。 
+<task>
+项目初始化：创建 Monorepo 结构并配置前后端基础框架
+</task>
+
+<requirements>
+请帮我完成以下任务：
+
+1. 创建项目目录结构：
+   - 根目录配置（pnpm workspace）
+   - /frontend 子项目（Next.js）
+   - /api 子项目（FastAPI）
+
+2. 前端初始化：
+   - 使用 Next.js 14 with App Router
+   - 配置 TypeScript 和 Tailwind CSS
+   - 初始化 shadcn/ui
+   - 设置 TanStack Query
+
+3. 后端初始化：
+   - 创建基础的 FastAPI 应用
+   - 配置 SQLModel 和数据库连接
+   - 创建健康检查端点
+
+4. Vercel 部署配置：
+   - vercel.json 配置文件
+   - 环境变量设置指导
+
+5. 开发环境设置：
+   - 本地开发启动脚本
+   - 环境变量配置示例
+</requirements>
+
+<expected_output>
+请为每个文件创建一个 Artifact，包含：
+- 完整的文件内容
+- 文件路径说明
+- 相关的命令行操作步骤
+</expected_output>
+然后实现第一个模块-》<task>
+实现 Todo 优先级管理功能，包含完整的 CRUD 操作和实时更新界面
+</task>
+
+<feature_requirements>
+Todo 数据模型：
+- id: 自增主键
+- content: 任务内容
+- priority: 优先级（high/medium/low）
+- is_completed: 完成状态
+- created_at: 创建时间
+- updated_at: 更新时间
+
+功能需求：
+1. 创建新的 Todo 项
+2. 按优先级分组显示 Todo 列表
+3. 切换完成状态（带动画效果）
+4. 编辑 Todo 内容和优先级
+5. 删除 Todo 项
+6. 实现乐观更新以提升用户体验
+</feature_requirements>
+
+<technical_requirements>
+后端 API：
+- POST /api/todos - 创建
+- GET /api/todos - 获取列表（支持过滤）
+- PUT /api/todos/{id} - 更新
+- DELETE /api/todos/{id} - 删除
+
+前端实现：
+- 使用 shadcn/ui 的 Card、Button、Input、Select、Checkbox 组件
+- TanStack Query 管理数据状态和缓存
+- 优先级使用不同颜色标识
+- 拖拽排序功能（可选）
+</technical_requirements>
+
+<expected_artifacts>
+1. 后端：models.py（数据模型）
+2. 后端：todo_routes.py（API 路由）
+3. 前端：api/todos.ts（API 客户端）
+4. 前端：components/TodoList.tsx（主组件）
+5. 前端：components/TodoItem.tsx（单项组件）
+6. 前端：app/todos/page.tsx（页面组件）
+</expected_artifacts>

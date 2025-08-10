@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__filesystem__create_directory",
+      "mcp__filesystem__write_file",
+      "mcp__filesystem__directory_tree",
+      "mcp__sequentialthinking__sequentialthinking",
+      "mcp__filesystem__list_directory",
+      "mcp__filesystem__read_text_file",
+      "mcp__filesystem__edit_file",
+      "Bash(pnpm type-check:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm build:*)",
+      "Bash(alembic revision:*)",
+      "Bash(pnpm create:*)"
+    ],
+    "deny": []
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -c \"(New-Object Media.SoundPlayer '.\\sounds\\mixkit-wind-chimes-2014.wav').PlaySync()\""
+          }
+        ]
+      }
+    ]
+  }
+}
