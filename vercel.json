@@ -1,7 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && pnpm run build",
-  "installCommand": "pnpm install",
   "functions": {
     "api/main.py": {
       "runtime": "python3.11"
